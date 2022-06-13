@@ -137,3 +137,6 @@ dmypy.json
 # Yolo model
 processing/*.cfg
 processing/*.weights
+
+# Temp media
+static/images/*
