@@ -1,11 +1,26 @@
-<!doctype html>
-<title>Upload new File</title>
-<h1>Upload new File!</h1>
-<form method=post enctype=multipart/form-data>
-  <input type=file name=file>
-  <input type=submit value=Upload>
-</form>
-
-{% if image_path %}
-  <img src="{{ image_path }}" alt="" width="600px">
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Tank detection</title>
+</head>
+<body>
+    <a href="/"><h1>Tank detection</h1></a>
+    <div id="upload-form-wrapper">
+        <div id="upload-frame" class="div-inner">
+            <form id="upload-form" method="post" enctype="multipart/form-data">
+                <input id="upload-btn" type="file" name="file" onchange="this.form.submit()">
+            </form>
+            <div id="upload-image-box">
+                {% if image_path %}
+                    <img id="uploaded-image" src="{{ image_path }}">
+                {% else %}
+                    <p id="upload-text">Click to upload photo</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -41,7 +41,7 @@ def upload_file():
                 image_path=image_path)
         return render_template('index.html')
     else:
-        return 'Some error!'
+        return '404'
 
 
 if __name__ == '__main__':

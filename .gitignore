@@ -133,3 +133,7 @@ dmypy.json
 
 # IDE
 .idea/
+
+# Yolo model
+processing/*.cfg
+processing/*.weights
