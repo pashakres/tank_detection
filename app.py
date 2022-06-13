@@ -4,6 +4,8 @@ from werkzeug.utils import secure_filename
 from flask import Flask, render_template, \
     flash, request, redirect, url_for
 
+from processing.object_detection import detect
+
 
 UPLOAD_FOLDER = 'static/images'
 ALLOWED_EXTENSIONS = ('png', 'jpg', 'jpeg')
@@ -34,6 +36,7 @@ def upload_file():
     elif request.method == 'GET':
         if 'filename' in request.values:
             image_path = f'{UPLOAD_FOLDER}/{request.values["filename"]}'
+            detect(image_path)
             return render_template('index.html',
                 image_path=image_path)
         return render_template('index.html')
