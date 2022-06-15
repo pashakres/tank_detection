@@ -2,7 +2,7 @@ import os
 
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, \
-    flash, request, redirect, url_for
+    request, redirect, url_for
 
 from processing.object_detection import detect
 
@@ -23,16 +23,17 @@ def allowed_file(filename):
 def upload_file():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('No file part')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+            filetype = secure_filename(file.filename).split('.').pop()
+            filename = f'temp_image.{filetype}'
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('upload_file', filename=filename))
+        else:
+            return render_template('index.html')
     elif request.method == 'GET':
         if 'filename' in request.values:
             image_path = f'{UPLOAD_FOLDER}/{request.values["filename"]}'

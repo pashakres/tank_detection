@@ -11,7 +11,7 @@
     <div id="upload-form-wrapper">
         <div id="upload-frame" class="div-inner">
             <form id="upload-form" method="post" enctype="multipart/form-data">
-                <input id="upload-btn" type="file" name="file" onchange="this.form.submit()">
+                <input id="upload-btn" type="file" name="file" accept=".jpg, .jpeg, .png" onchange="this.form.submit()">
             </form>
             <div id="upload-image-box">
                 {% if image_path %}
